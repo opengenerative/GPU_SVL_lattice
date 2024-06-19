@@ -4,7 +4,7 @@
 #version 450
 #extension GL_ARB_viewport_array : enable
 layout (points) in;
-layout (points, max_vertices = 1) out;//triangle_strip
+layout (points, max_vertices = 1) out;
 const int num =  1;
 layout(invocations = num) in;
 
