@@ -5,7 +5,7 @@
 #extension GL_ARB_viewport_array : enable
 
 layout (triangles) in;
-layout (triangle_strip, max_vertices = 3) out;//triangle_strip
+layout (triangle_strip, max_vertices = 3) out;
 
 const int num =  1;
 layout(invocations = num) in;
