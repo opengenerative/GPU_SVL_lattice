@@ -16,13 +16,16 @@ Users should have a GPU device with atleast 8 gb memory. It may run on lower end
 
 For more details please check DEPENDENCIES.md file.
 
-## Compilation 
-
-1. In the 'Makefile' provide the location of 'nvcc' compiler in CUDA_PATH. (here '/usr/local/cuda-12.3')
-2. Before compiling the cuda codes, compile the shaders using the command 'make compile_shader' in current working directory terminal.This is necessary for the first run and also if shader files changes.
-3. Then type 'make all'
-4. Check whether output you get int the terminal  message is 'Compilation Done!'.
-5. After successful compilation run the executable './generate_lattice' with following argument values for each case.
+## Download and Compilation 
+1. Select a folder or directory
+2. Use ' git clone https://github.com/opengenerative/GPU_SVL_lattice.git ' or download the "zip" folder and extract it in the folder(directory) selected.
+3. Change directory to 'GPU_SVL_lattice' by using the command ' cd GPU_SVL_lattice/ ' or clicking on the ' GPU_SVL_lattice ' directory.
+4. In the ' Makefile ' provide the location of ' nvcc ' compiler in CUDA_PATH. (here ' /usr/local/cuda-12.3 ')
+5. Before compiling the cuda codes, in the command terminal type the command ' make compile_shader '. It will compile the shaders.This is necessary for the 
+   first run and also if shader files changes.
+6. Next type ' make all '
+7. Check whether output you get int the terminal  message is ' Compilation Done! '.
+8. After successful compilation run the executable ' ./generate_lattice ' with following argument values for each case.
 
     **./(Executable_name) (grid_size) (grid_spacing) (n or b or r) (u or v) (false or true)**
    
