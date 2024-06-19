@@ -25,16 +25,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*
- *  This file implements common mathematical operations on vector types
- *  (float3, float4 etc.) since these are not provided as standard by CUDA.
- *
- *  The syntax is modeled on the Cg standard library.
- *
- *  This is part of the Helper library includes
- *
- *    Thanks to Linh Hah for additions and fixes.
- */
+
 
 #ifndef HELPER_MATH_H
 #define HELPER_MATH_H
