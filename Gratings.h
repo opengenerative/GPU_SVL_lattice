@@ -1,10 +1,7 @@
 #pragma once
 
-
 #ifndef __GRATINGS_H_
 #define __GRATINGS_H_
-
-
 
 class  Gratings
 {
@@ -21,6 +18,7 @@ class  Gratings
     float *d_ResReduction = NULL;
 
     public:
+
     Gratings(int NX,int NY,int NZ);
     ~Gratings();
     
