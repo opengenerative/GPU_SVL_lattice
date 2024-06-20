@@ -3,23 +3,8 @@
 #include <cufft.h>
 #include <helper_cuda.h>
 
-
-
-
 extern cufftHandle planr2c;
 extern cufftHandle planc2r;
-
-
-Fft_lattice::Fft_lattice()
-{
-
-}
-
-Fft_lattice::~Fft_lattice()
-{
-
-}
-
 
 
 __global__ void create_lattice_kernel(float *d_latticevol,uint NX, uint NY, uint NZ, uint size)
@@ -125,8 +110,6 @@ __global__ void fft_scalar_kernel(float2 *fft_data_compute,float scalar_val,int 
 	}
 
 };
-
-
 
 
 void Fft_lattice::fft_scalar(float2 *fft_data_compute,float scalar_val,int size)
