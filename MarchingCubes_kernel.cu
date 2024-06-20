@@ -1,14 +1,10 @@
 /*
 
-
 Reference - https://paulbourke.net/geometry/polygonise/
 
 Reference - https://github.com/NVIDIA/cuda-samples/tree/master/Samples/5_Domain_Specific/marchingCubes
 
 */
-
-
-
 
 
 #include <stdio.h>
@@ -21,14 +17,9 @@ Reference - https://github.com/NVIDIA/cuda-samples/tree/master/Samples/5_Domain_
 #include "tables.h"
 #include "MarchingCubes_kernel.h"
 
-
-
 cudaTextureObject_t triTex_s;
 cudaTextureObject_t triTex_t;
 cudaTextureObject_t numVertsTex_s;
-
-
-
 
 
 void MarchingCubeCuda::allocateTextures_s(uint **d_triTable,  uint **d_numVertsTable)
@@ -152,10 +143,6 @@ classifyVoxel(uint *voxelVerts, uint *voxelOccupied, float *volume,
         voxelVerts[i] = numVerts;
 
         voxelOccupied[i] = (numVerts > 0);
- 
-      
-
- 
  
     }
   
@@ -333,8 +320,6 @@ generateTriangles_lattice_kernel(float4 *pos, float4 *norm, uint *compactedVoxel
         field[6] = sampleVolume(volume, gridPos + make_uint3(1, 1, 1), gridSize);
         field[7] = sampleVolume(volume, gridPos + make_uint3(0, 1, 1), gridSize);
 
-        
-    
     
         float isoVal = isoValue; 
         
@@ -347,10 +332,6 @@ generateTriangles_lattice_kernel(float4 *pos, float4 *norm, uint *compactedVoxel
         cubeindex += uint(field[5] < isoVal)*32;
         cubeindex += uint(field[6] < isoVal)*64;
         cubeindex += uint(field[7] < isoVal)*128;
-
-
-
-
         
         field[0] = sampleVolume(volume_one, gridPos, gridSize);
         field[1] = sampleVolume(volume_one, gridPos + make_uint3(1, 0, 0), gridSize);
@@ -360,12 +341,6 @@ generateTriangles_lattice_kernel(float4 *pos, float4 *norm, uint *compactedVoxel
         field[5] = sampleVolume(volume_one, gridPos + make_uint3(1, 0, 1), gridSize);
         field[6] = sampleVolume(volume_one, gridPos + make_uint3(1, 1, 1), gridSize);
         field[7] = sampleVolume(volume_one, gridPos + make_uint3(0, 1, 1), gridSize);
-
-
-        
-
-
-        
 
         __shared__ float3 vertlist[12*NTHREADS];
         vertlist[threadIdx.x] = vertexInterp3(isoValue, v[0], v[1], field[0], field[1]);
@@ -428,8 +403,6 @@ generateTriangles_lattice_kernel(float4 *pos, float4 *norm, uint *compactedVoxel
             }
         }
         
-       
-
     }
 
 
