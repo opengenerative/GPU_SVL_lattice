@@ -1459,9 +1459,9 @@ public:
                             {a_1, b_1, c_1},
                             {a_3, b_3, c_3}};
                      
-            push_constant.eyes[0] = a_1*3;
-            push_constant.eyes[1] = b_1;
-            push_constant.eyes[2] = c_1*3;
+            push_constant.eyes[0] = a_2*3;
+            push_constant.eyes[1] = b_2;
+            push_constant.eyes[2] = c_2*3;
             push_constant.eyes[3] = 1.0;
 
             vec3 center[5] = {
