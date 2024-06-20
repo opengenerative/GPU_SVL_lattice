@@ -1,17 +1,12 @@
 
-
 #include "Gratings.h"
 #include <helper_cuda.h> 
 #include <iostream>
-// #include "defines.h"
 #include <math.h>
 #include <vector>
 #include <cuComplex.h>
 
 using namespace std;
-
-
-
 
 cudaTextureObject_t     texObj;
 cudaExtent array_extent;
@@ -53,12 +48,9 @@ __global__ void Reduction(float *d_DataIn, float *d_DataOut, int block_num)
 		index = tid + k*1024;
 		if(index < block_num)
 		{
-			
 			sdata[tid] = d_DataIn[index];
 		
-		
-			c += sdata[tid];
-						
+			c += sdata[tid];			
 		}
 		
 	
@@ -155,9 +147,6 @@ float dx, float dy, float dz,  char latticetype_one, char latticetype_two)
 
 		z = int(floorf(((tx) / (x_dim * y_dim))));
 	
-
-
-
 
 		if(x == 0)
 		{
@@ -283,7 +272,6 @@ float dx, float dy, float dz,  char latticetype_one, char latticetype_two)
 		}
 
 	
-	
 		float con = 1.0;
 		float angl = 0.0;
 
@@ -387,13 +375,10 @@ float dx, float dy, float dz,  char latticetype_one, char latticetype_two)
 
 
 
-
 __global__ void GPUMatvec_lattice_kernel(float *d_d,float *d_q, int x_dim, int y_dim , int z_dim)
 {
 
-	
 	int tx = blockIdx.x * blockDim.x + threadIdx.x; 
-
 
 	int x, y, z;
 	float x1,x2,x3,y1,y2,y3,z1,z2,z3;
@@ -625,7 +610,6 @@ __global__ void GPUScalar_lattice_kernel(float *d_result,float *d_vec1,float *d_
 __global__ void grating_kernel(float2 *dvol,int NX2,int NY2,int NZ2,float dx, float dy, float dz, cudaTextureObject_t texObj)
 {
 	
-
 	int tx = blockIdx.x * blockDim.x + threadIdx.x;
 	int ty = blockIdx.y * blockDim.y + threadIdx.y;
 	int tz = blockIdx.z * blockDim.z + threadIdx.z;
@@ -701,10 +685,7 @@ __global__ void fillfrac_kernel(float *d_svl,float *d_fillfrac,int NX, int NY,in
 		a = d_fillfrac[tx];
 		b = d_svl[tx];
 		c = a*b;
-		__syncthreads();
-	
 		d_svl[tx] = c;
-
 
 	}
 
@@ -822,7 +803,6 @@ __global__ void copytotexture_kernel(float * d_phi, cudaPitchedPtr data_ptr, int
 		if(ty < NY)
 		{
 
-
 			float* row = (float*)(slice + ty * pitch);
 			if (tx < NX)
 			{
@@ -872,16 +852,11 @@ void Gratings::GPUCG_lattice(float *d_phi,const int iter, const int OptIter, con
 	int iCounter = 1;
 
 
-	
-
-
 	cudaMemcpy(d_d, d_phi, sizeof(float)* (grid_size), cudaMemcpyDeviceToDevice);
 	cudaMemcpy(d_res, d_phi, sizeof(float)* (grid_size), cudaMemcpyDeviceToDevice);
 	cudaMemset(d_phi, 0.0, sizeof(float)* (grid_size));
 
 	
-
-
 	// computing r^t * r
 	GPUScalar_lattice(d_ResReduction_lattice,d_res,d_res,grid_size,block_num);
 	cudaDeviceSynchronize();
@@ -954,8 +929,6 @@ void Gratings::GPUCG_lattice(float *d_phi,const int iter, const int OptIter, con
 	cudaFree(d_res);
 	cudaFree(d_ResReduction_lattice);
 	
-
-
 }
 
 void Gratings::grating(float2 *dvol,int NX2, int NY2, int NZ2,float dx, float dy, float dz)
@@ -1011,8 +984,7 @@ void Gratings::GPUScalar_lattice(float *d_result,float *d_vec1,float *d_vec2,int
 {
 	dim3 grids(ceil((n)/float(1024)),1,1);
 	dim3 tids(1024,1,1);
-	
-	
+
 	GPUScalar_lattice_kernel<<<grids,tids>>>(d_result,d_vec1,d_vec2,n);
 	cudaDeviceSynchronize();
 
@@ -1119,12 +1091,11 @@ __global__ void device_bufferfour(float *datatwo, float a, float b,int NX, int N
 
 		k = (k - a)/(b-a);
 	
-	
 		if ((xx == 0) || (xx == (NX-1)) || (yy == 0) || (yy == (NY-1)) || (zz == 0) || (zz == (NZ-1)))
 		{
 			
 			k = 0.0;
-		
+
 		}
 
 		else
@@ -1172,8 +1143,6 @@ void Gratings::normalise_buffer(float *dataone, float *datatwo, size_t size)
 	dim3 tids(1024,1,1);
 	device_buffer<<<grids,tids>>>(datatwo,size,a,b);
 	cudaDeviceSynchronize();
-	
-
 	
 }
 
