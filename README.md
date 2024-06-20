@@ -19,13 +19,14 @@ For more details please check DEPENDENCIES.md file.
 ## Download and Compilation 
 1. Select a folder or directory
 2. Use ' git clone https://github.com/opengenerative/GPU_SVL_lattice.git ' or download the "zip" folder and extract it in the folder(directory) selected.
-3. Change directory to 'GPU_SVL_lattice' by using the command ' cd GPU_SVL_lattice/ ' or clicking on the ' GPU_SVL_lattice ' directory.
-4. In the ' Makefile ' provide the location of ' nvcc ' compiler in CUDA_PATH. (here ' /usr/local/cuda-12.3 ')
-5. Before compiling the cuda codes, in the command terminal type the command ' make compile_shader '. It will compile the shaders.This is necessary for the 
+3. Change directory to 'GPU_SVL_lattice' by using the command ' cd GPU_SVL_lattice/ ' or clicking on the ' GPU_SVL_lattice ' directory.                 
+4. Open a terminal inside ' GPU_SVL_lattice ' folder.
+5. In the ' Makefile ' provide the location of ' nvcc ' compiler in CUDA_PATH. (here ' /usr/local/cuda-12.3 ')
+6. Before compiling the cuda codes, in the command terminal type the command ' make compile_shader '. It will compile the shaders.This is necessary for the 
    first run and also if shader files changes.
-6. Next type ' make all '
-7. Check whether output you get int the terminal  message is ' Compilation Done! '.
-8. After successful compilation run the executable ' ./generate_lattice ' with following argument values for each case.
+7. Next type ' make all '
+8. Check whether output you get int the terminal  message is ' Compilation Done! '.
+9. After successful compilation run the executable ' ./generate_lattice ' with following argument values for each case.
 
     **./(Executable_name) (grid_size) (grid_spacing) (n or b or r) (u or v) (false or true)**
    
@@ -33,8 +34,8 @@ For more details please check DEPENDENCIES.md file.
    
     Explanation :
     * argument value 1 - execuatble with name 'generate_lattice'
-    * argument value 2 - grid size (values in between 16 to 150) 
-    * argument value 3 - grid spacing (value is 1.0, not changeable)
+    * argument value 2 - grid size (values in between 16 to 150) // higher the value higher the gpu memory needed //
+    * argument value 3 - grid spacing (value fixed to 1.0, not changeable for this version)
     * argument value 4 - 
 
         * n - normal lattice
