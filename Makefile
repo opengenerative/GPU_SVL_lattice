@@ -71,13 +71,7 @@ msg7 := "Building the executable './generate_lattice' - Step 7 of 7"
 msg8 := "Compilation Done!"
 
 # Target rules
-all: build
 
-
-build: generate_lattice
-
-
-	
 Gratings.o:Gratings.cu
 	@echo $(msg1)
 	@$(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $< 
@@ -108,9 +102,12 @@ generate_lattice: Gratings.o Fft_lattice.o File_output.o MarchingCubes_kernel.o 
 	@echo $(msg7)
 	@$(NVCC) $(ALL_LDFLAGS) $(GENCODE_FLAGS) -o $@ $+ $(LIBRARIES)
 	@echo $(msg8)
- 
-run: build
 
+build: generate_lattice
+
+all: build
+ 
+run: 
 	./generate_lattice 30 1.0 n u false
 
 clean:
