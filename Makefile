@@ -111,7 +111,7 @@ generate_lattice: Gratings.o Fft_lattice.o File_output.o MarchingCubes_kernel.o 
  
 run: build
 
-	./generate_lattice
+	./generate_lattice 30 1.0 n u false
 
 clean:
 	rm -f Gratings.o Fft_lattice.o File_output.o MarchingCubes_kernel.o VulkanApp.o main.o generate_lattice
