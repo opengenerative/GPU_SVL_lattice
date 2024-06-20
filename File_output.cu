@@ -1,28 +1,10 @@
 
-
-
-
 #include "File_output.h"
 #include <fstream>
 #include <vector>
 #include <map>
 
 using namespace std;
-
-File_output::File_output()
-{
-
-}
-
-File_output::~File_output()
-{
-
-}
-
-
-
-
-
 
 void File_output::file_write(float4 *d_pos, uint totalVerts, const char *filename)
 {
@@ -96,8 +78,6 @@ void File_output::file_write(float4 *d_pos, uint totalVerts, const char *filenam
             }
         }
     }
-
-    
 
     mfile_latttice.close();
     free(latttice_data);                    
