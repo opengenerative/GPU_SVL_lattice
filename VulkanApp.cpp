@@ -1,8 +1,5 @@
 /*Reference :- https://github.com/NVIDIA/cuda-samples/blob/master/Samples/5_Domain_Specific/simpleVulkan/VulkanBaseApp.cpp*/
 
-
-
-
 #include <unistd.h>
 #include <typeinfo>
 #include <stdexcept>
@@ -18,8 +15,6 @@
 #define GLFW_INCLUDE_VULKAN
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <GLFW/glfw3.h>
-
-
 
 #ifndef countof
 #define countof(x) (sizeof(x) / sizeof(*(x)))
@@ -39,7 +34,6 @@ struct
     VkPipeline graphicsPipeline_3;
 
 } pipelines;
-
 
 
 
@@ -249,9 +243,6 @@ void VulkanBaseApp::initVulkan()
     createSyncObjects();
     
 }
-
-
-
 
 
 static VkFormat findSupportedFormat(VkPhysicalDevice physicalDevice, const std::vector<VkFormat>& candidates, VkImageTiling tiling, VkFormatFeatureFlags features)
