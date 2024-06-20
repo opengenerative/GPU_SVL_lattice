@@ -639,7 +639,6 @@ public:
         bindingDesc[1].stride = sizeof(vec3);
         bindingDesc[1].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
 
-
         attribDesc[0].binding = 0;
         attribDesc[0].location = 0;
         attribDesc[0].format = VK_FORMAT_R32_SFLOAT;
@@ -667,7 +666,6 @@ public:
         bindingDesc[1].stride = sizeof(vec4);
         bindingDesc[1].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
 
-
         attribDesc[0].binding = 0;
         attribDesc[0].location = 0;
         attribDesc[0].format = VK_FORMAT_R32G32B32A32_SFLOAT;
@@ -692,7 +690,6 @@ public:
         bindingDesc[1].binding = 1;
         bindingDesc[1].stride = sizeof(vec3);
         bindingDesc[1].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
-
 
         attribDesc[0].binding = 0;
         attribDesc[0].location = 0;
@@ -721,7 +718,6 @@ public:
         bindingDesc[1].stride = sizeof(vec4);
         bindingDesc[1].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
 
-
         attribDesc[0].binding = 0;
         attribDesc[0].location = 0;
         attribDesc[0].format = VK_FORMAT_R32G32B32A32_SFLOAT;
@@ -749,7 +745,6 @@ public:
         bindingDesc[1].binding = 1;
         bindingDesc[1].stride = sizeof(vec3);
         bindingDesc[1].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
-
 
         attribDesc[0].binding = 0;
         attribDesc[0].location = 0;
@@ -1592,8 +1587,6 @@ public:
         checkCudaErrors(cudaMalloc((void **) &d_voxelOccupiedScantwo,     memSizetwo));
         checkCudaErrors(cudaMalloc((void **) &d_compVoxelArraytwo,   memSizetwo));
 
-        
-       
     
     }
 
@@ -1883,9 +1876,6 @@ public:
         gridSizeone,gridSizeShiftone,gridSizeMaskone, voxelSizeone,gridcenterone,
         &activeVoxelsone, &totalVertsone, d_compVoxelArrayone,maxmemvertsone,fft_gratings);
 
-
-  
-
         checkCudaErrors(cudaMemcpy(lattice_data,h_lattice_dat,sizeof(float2)*(indi_range*indi_range*indi_range),cudaMemcpyHostToDevice));
         
         checkCudaErrors(cudaFree(fft_data));
@@ -1900,14 +1890,12 @@ public:
         cudaExternalSemaphoreSignalParams signalParams = {};
         signalParams.flags = 0;
         signalParams.params.fence.value = 0;
-
-                         
+    
         checkCudaErrors(cudaSignalExternalSemaphoresAsync(&cudaSignalSemaphore, &signalParams, 1));
         VulkanBaseApp::updatecommandBuffers();
         VulkanBaseApp::drawFrame(shift);
         checkCudaErrors(cudaWaitExternalSemaphoresAsync(&cudaWaitSemaphore, &waitParams, 1));
         
-
         return 0;
 
     }
@@ -2103,12 +2091,14 @@ int main(int argc, char** argv)
     bool data_out;
 
     grid_value = atoi(argv[1]);
+
     if((grid_value < 16) || (grid_value > 150))
     {
         printf("Grid Dimension should be in the interval 16 and 150 \n");
         return 0;
 
     }
+
     grid_spacing = atof(argv[2]);
 
     if(grid_spacing != 1.0)
@@ -2116,6 +2106,7 @@ int main(int argc, char** argv)
         printf("Grid Spacing Value should be 1.0 \n");
         return 0;
     }
+
     a = *argv[3];
 
     if((a != 'b') && (a != 'r') && (a != 'n'))
@@ -2134,6 +2125,7 @@ int main(int argc, char** argv)
     }
 
     std::string output_data = argv[5];
+
     if(output_data == "true")
     {
         data_out = true;
