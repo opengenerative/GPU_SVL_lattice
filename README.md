@@ -26,7 +26,7 @@ For more details please check DEPENDENCIES.md file.
    first run and also if shader files changes.
 7. Next type ' make all '
 8. Check whether output you get int the terminal  message is ' Compilation Done! '.
-9. Type 'make run '. You should see Unit cell lattice structure and Spatially distributed lattice structure with grid size 30.
+9. Type ' make run '. You should see Unit cell lattice structure and Spatially distributed lattice structure with grid size 30.
 10. Run the executable ' ./generate_lattice ' with following argument values for each case.
 
     **./(Executable_name) (grid_size) (grid_spacing) (n or b or r) (u or v) (false or true)**
