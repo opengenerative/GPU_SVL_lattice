@@ -1,5 +1,4 @@
 
-
 #pragma once
 #ifndef __VULKANBASEAPP_H__
 #define __VULKANBASEAPP_H__
@@ -8,16 +7,13 @@
 #include <vector>
 #include <vulkan/vulkan.h>
 
-
 struct GLFWwindow;
 typedef float fvec4[4];
-
 
 class VulkanBaseApp
 {
 public:
 
-  
     VulkanBaseApp(const std::string& appName, bool enableValidation = false);
     static VkExternalSemaphoreHandleTypeFlagBits getDefaultSemaphoreHandleType();
     static VkExternalMemoryHandleTypeFlagBits getDefaultMemHandleType();
@@ -33,7 +29,9 @@ public:
     VkCommandBuffer beginSingleTimeCommands();
     void endSingleTimeCommands(VkCommandBuffer commandBuffer);
     void mainLoop(bool shift);
+
 protected:
+
     const std::string appName;
     const bool enableValidation;
     VkInstance instance;
@@ -86,7 +84,6 @@ protected:
     virtual void fillRenderingCommandBufferone(VkCommandBuffer& buffer) {};
     virtual void fillRenderingCommandBuffertwo(VkCommandBuffer& buffer) {};
 
-   
     virtual std::vector<const char *> getRequiredExtensions() const;
     virtual std::vector<const char *> getRequiredDeviceExtensions() const;
     virtual void getVertexDescriptions_1(std::vector<VkVertexInputBindingDescription>& bindingDesc, std::vector<VkVertexInputAttributeDescription>& attribDesc);
@@ -95,7 +92,6 @@ protected:
     virtual void getVertexDescriptionstwo(std::vector<VkVertexInputBindingDescription>& bindingDesc, std::vector<VkVertexInputAttributeDescription>& attribDesc);
     virtual void getVertexDescriptions_3(std::vector<VkVertexInputBindingDescription>& bindingDesc, std::vector<VkVertexInputAttributeDescription>& attribDesc);
     
-   
     virtual void getAssemblyStateInfo(VkPipelineInputAssemblyStateCreateInfo& info);
     virtual void getWaitFrameSemaphores(std::vector<VkSemaphore>& wait, std::vector< VkPipelineStageFlags>& waitStages) const;
     virtual void getSignalFrameSemaphores(std::vector<VkSemaphore>& signal) const;
@@ -104,6 +100,7 @@ protected:
     virtual void updatecommandBuffers();
     virtual void drawFrame(bool shift);
     GLFWwindow *window;
+
 private:
     
     void initWindow();
